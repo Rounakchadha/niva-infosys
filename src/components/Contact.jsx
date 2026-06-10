@@ -4,9 +4,9 @@ const details = [
   {
     icon: Phone,
     label: 'Call Us',
-    value: '+91 XXXXX XXXXX',
+    value: '+91 80438 65962',
     sub: 'Mon – Sat, 9 AM – 7 PM',
-    href: 'tel:+919999999999',
+    href: 'tel:+918043865962',
   },
   {
     icon: Mail,
@@ -18,8 +18,8 @@ const details = [
   {
     icon: MapPin,
     label: 'Visit Us',
-    value: 'Lucknow, Uttar Pradesh',
-    sub: '226001 — Replace with full address',
+    value: '2/200, Vishwas Khand',
+    sub: 'Gomti Nagar, Lucknow - 226010',
     href: '#map',
   },
   {
@@ -72,7 +72,7 @@ export default function Contact() {
 
             {/* WhatsApp button */}
             <a
-              href="https://wa.me/919999999999"
+              href="https://wa.me/918043865962"
               target="_blank"
               rel="noopener noreferrer"
               className="sm:col-span-2 flex items-center justify-center gap-3 bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/20 text-[#25D366] font-bold rounded-2xl py-5 transition-colors mt-2"
@@ -82,16 +82,21 @@ export default function Contact() {
             </a>
           </div>
 
-          {/* Map placeholder */}
+          {/* Google Map */}
           <div
             id="map"
-            className="bg-zinc-900/30 border border-white/5 rounded-3xl h-full min-h-[400px] flex flex-col items-center justify-center text-zinc-500"
+            className="bg-zinc-900/30 border border-white/5 rounded-3xl h-full min-h-[400px] overflow-hidden"
           >
-            <MapPin className="w-12 h-12 mb-4 opacity-30" />
-            <span className="text-sm tracking-wide">Replace with Google Maps embed</span>
-            <span className="text-xs mt-2 text-zinc-700">
-              {'<iframe src="https://maps.google.com/..." />'}
-            </span>
+            <iframe
+              src="https://maps.google.com/maps?q=Niva%20Infosys%20Gomti%20Nagar%20Lucknow&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0, minHeight: '400px' }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Niva Infosys Location Map"
+            />
           </div>
         </div>
       </div>

@@ -23,9 +23,9 @@ export default function Footer() {
               Lucknow's trusted partner for Security, Surveillance & IT Infrastructure since 2007.
             </p>
             <div className="space-y-3">
-              <a href="tel:+919999999999" className="flex items-center gap-3 text-zinc-400 hover:text-white text-sm transition-colors">
+              <a href="tel:+918043865962" className="flex items-center gap-3 text-zinc-400 hover:text-white text-sm transition-colors">
                 <Phone className="w-4 h-4 text-white flex-shrink-0" />
-                +91 XXXXX XXXXX
+                +91 80438 65962
               </a>
               <a href="mailto:info@nivainfosys.com" className="flex items-center gap-3 text-zinc-400 hover:text-white text-sm transition-colors">
                 <Mail className="w-4 h-4 text-white flex-shrink-0" />
@@ -33,7 +33,7 @@ export default function Footer() {
               </a>
               <div className="flex items-start gap-3 text-zinc-400 text-sm">
                 <MapPin className="w-4 h-4 text-white flex-shrink-0 mt-0.5" />
-                Lucknow, Uttar Pradesh 226001
+                2/200, Vishwas Khand, Gomti Nagar, Lucknow - 226010
               </div>
             </div>
           </div>
