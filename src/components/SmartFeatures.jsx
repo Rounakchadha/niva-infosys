@@ -1,4 +1,5 @@
 import { Smartphone, Cloud, Brain, Globe, Moon, ScanFace } from 'lucide-react'
+import Reveal from './Reveal'
 
 const features = [
   {
@@ -37,7 +38,7 @@ export default function SmartFeatures() {
   return (
     <section className="py-32 bg-black border-t border-white/5 relative overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <Reveal className="text-center max-w-3xl mx-auto mb-20">
           <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-4">
             Smart Technology
           </p>
@@ -49,12 +50,13 @@ export default function SmartFeatures() {
             Modern surveillance goes beyond cameras. Our systems bring AI and cloud power to keep you
             always informed and protected.
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feat) => (
-            <div
+          {features.map((feat, i) => (
+            <Reveal
               key={feat.title}
+              delay={(i % 3) * 100}
               className="bg-zinc-900/40 border border-white/5 rounded-3xl p-8 card-hover"
             >
               <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mb-6">
@@ -62,7 +64,7 @@ export default function SmartFeatures() {
               </div>
               <h3 className="text-white font-semibold text-xl mb-3 tracking-tight">{feat.title}</h3>
               <p className="text-zinc-400 text-sm leading-relaxed">{feat.desc}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

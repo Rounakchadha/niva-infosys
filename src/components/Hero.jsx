@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Phone, ClipboardList, ShieldCheck, Wifi, Camera } from 'lucide-react'
 import AnimatedBackground from './AnimatedBackground'
 
@@ -21,27 +22,27 @@ export default function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-white mb-6">
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-tight tracking-tight text-white mb-6">
             Securing Homes, Businesses
             <br />
             <span className="text-zinc-500">& Institutions.</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-zinc-400 text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl mx-auto">
+          <p className="text-zinc-400 text-base sm:text-lg lg:text-xl leading-relaxed mb-10 max-w-2xl mx-auto px-2 sm:px-0">
             CCTV, Fire Safety, Access Control, Networking & Surveillance Solutions in Lucknow.
             End-to-end installation, genuine products, reliable support.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto">
-            <a
-              href="#lead-form"
+          <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-xs sm:max-w-none mx-auto">
+            <Link
+              to="/contact"
               className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold w-full sm:w-[240px] py-4 rounded-full transition-colors"
             >
               <ClipboardList className="w-5 h-5" />
               Get Free Site Survey
-            </a>
+            </Link>
             <a
               href="tel:+919999999999"
               className="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-white/5 border border-white/20 text-white font-semibold w-full sm:w-[240px] py-4 rounded-full transition-colors"
@@ -52,7 +53,7 @@ export default function Hero() {
           </div>
 
           {/* Floating feature pills */}
-          <div className="flex flex-wrap justify-center gap-3 mt-16">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-12 sm:mt-16">
             {[
               { icon: Camera, label: 'CCTV Solutions' },
               { icon: ShieldCheck, label: 'Fire Safety' },
@@ -60,7 +61,7 @@ export default function Hero() {
             ].map(({ icon: Icon, label }) => (
               <div
                 key={label}
-                className="flex items-center gap-2 bg-zinc-900/50 border border-white/5 rounded-full px-5 py-2"
+                className="flex items-center gap-2 bg-zinc-900/50 border border-white/5 rounded-full px-4 py-2 sm:px-5"
               >
                 <Icon className="w-4 h-4 text-white" />
                 <span className="text-zinc-300 text-sm font-medium">{label}</span>

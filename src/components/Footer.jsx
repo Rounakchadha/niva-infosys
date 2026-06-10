@@ -1,6 +1,14 @@
+import { Link } from 'react-router-dom'
 import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react'
 
-const quickLinks = ['Home', 'About Us', 'Services', 'Projects', 'Industries', 'Contact']
+const quickLinks = [
+  { label: 'Home', to: '/' },
+  { label: 'About Us', to: '/about' },
+  { label: 'Services', to: '/services' },
+  { label: 'Projects', to: '/projects' },
+  { label: 'Partners', to: '/partners' },
+  { label: 'Contact', to: '/contact' },
+]
 const services = ['CCTV Solutions', 'Fire Safety', 'Access Control', 'Networking & IT', 'AMC & Maintenance']
 
 export default function Footer() {
@@ -8,8 +16,8 @@ export default function Footer() {
 
   return (
     <footer className="bg-black border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12 lg:mb-16">
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="mb-6">
@@ -43,14 +51,14 @@ export default function Footer() {
             <h4 className="text-white font-semibold text-sm mb-6 uppercase tracking-widest">Quick Links</h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
-                <li key={link}>
-                  <a
-                    href={`#${link.toLowerCase().replace(/\s+/g, '-')}`}
+                <li key={link.to}>
+                  <Link
+                    to={link.to}
                     className="flex items-center gap-2 text-zinc-400 hover:text-white text-sm transition-colors group"
                   >
                     <ArrowRight className="w-3 h-3 text-zinc-600 group-hover:text-white transition-colors" />
-                    {link}
-                  </a>
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -62,13 +70,13 @@ export default function Footer() {
             <ul className="space-y-3">
               {services.map((svc) => (
                 <li key={svc}>
-                  <a
-                    href="#services"
+                  <Link
+                    to="/services"
                     className="flex items-center gap-2 text-zinc-400 hover:text-white text-sm transition-colors group"
                   >
                     <ArrowRight className="w-3 h-3 text-zinc-600 group-hover:text-white transition-colors" />
                     {svc}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -80,13 +88,13 @@ export default function Footer() {
             <p className="text-zinc-400 text-sm mb-6 leading-relaxed">
               Book a free site survey and get a custom quote for your property.
             </p>
-            <a
-              href="#lead-form"
-              className="inline-flex items-center gap-2 bg-white hover:bg-zinc-200 text-black text-sm font-semibold px-6 py-3 rounded-full transition-colors"
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center gap-2 bg-white hover:bg-zinc-200 text-black text-sm font-semibold px-6 py-4 sm:py-3 rounded-full transition-colors w-full sm:w-auto"
             >
               Free Site Survey
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </Link>
           </div>
         </div>
 

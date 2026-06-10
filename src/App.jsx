@@ -1,37 +1,25 @@
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import Stats from './components/Stats'
-import AboutPreview from './components/AboutPreview'
-import Services from './components/Services'
-import SmartFeatures from './components/SmartFeatures'
-import Industries from './components/Industries'
-import Brands from './components/Brands'
-import ProjectsGallery from './components/ProjectsGallery'
-import WhyChooseUs from './components/WhyChooseUs'
-import Testimonials from './components/Testimonials'
-import LeadForm from './components/LeadForm'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Layout from './components/Layout'
+import Home from './pages/Home'
+import About from './pages/About'
+import ServicesPage from './pages/ServicesPage'
+import Projects from './pages/Projects'
+import Partners from './pages/Partners'
+import Contact from './pages/Contact'
 
 export default function App() {
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <main>
-        <Hero />
-        <Stats />
-        <AboutPreview />
-        <Services />
-        <SmartFeatures />
-        <Industries />
-        <Brands />
-        <ProjectsGallery />
-        <WhyChooseUs />
-        <Testimonials />
-        <LeadForm />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/partners" element={<Partners />} />
+          <Route path="/contact" element={<Contact />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }

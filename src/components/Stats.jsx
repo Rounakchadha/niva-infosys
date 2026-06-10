@@ -1,5 +1,6 @@
 import { Trophy, Camera, Users, Zap } from 'lucide-react'
 import { useEffect, useState, useRef } from 'react'
+import Reveal from './Reveal'
 
 const stats = [
   { icon: Trophy, end: 19, suffix: '+', label: 'Years Experience', desc: 'Serving Lucknow since 2007' },
@@ -65,8 +66,8 @@ export default function Stats() {
     <section className="bg-zinc-900/30 border-y border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {stats.map(({ icon: Icon, end, suffix, label, desc }) => (
-            <div key={label} className="flex flex-col items-center text-center group">
+          {stats.map(({ icon: Icon, end, suffix, label, desc }, i) => (
+            <Reveal key={label} delay={i * 100} className="flex flex-col items-center text-center group">
               <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 group-hover:bg-white/10">
                 <Icon className="w-5 h-5 text-white" />
               </div>
@@ -75,7 +76,7 @@ export default function Stats() {
               </div>
               <div className="text-zinc-300 font-semibold text-base mb-1">{label}</div>
               <div className="text-zinc-500 text-sm">{desc}</div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

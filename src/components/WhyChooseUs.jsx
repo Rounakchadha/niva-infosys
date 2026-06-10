@@ -1,4 +1,5 @@
 import { Users, Package, Headphones, Settings, MapPin, Wrench } from 'lucide-react'
+import Reveal from './Reveal'
 
 const reasons = [
   {
@@ -37,7 +38,7 @@ export default function WhyChooseUs() {
   return (
     <section className="py-32 bg-black border-t border-white/5 relative overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <Reveal className="text-center max-w-3xl mx-auto mb-20">
           <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-4">
             Why Niva Infosys
           </p>
@@ -48,11 +49,11 @@ export default function WhyChooseUs() {
           <p className="text-zinc-400 text-lg">
             Here's why over 500 clients across Lucknow trust us with their security infrastructure.
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {reasons.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="flex flex-col gap-5 bg-zinc-900/30 border border-white/5 rounded-3xl p-8 card-hover">
+          {reasons.map(({ icon: Icon, title, desc }, i) => (
+            <Reveal key={title} delay={(i % 3) * 100} className="flex flex-col gap-5 bg-zinc-900/30 border border-white/5 rounded-3xl p-8 card-hover">
               <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center flex-shrink-0">
                 <Icon className="w-5 h-5 text-white" />
               </div>
@@ -60,7 +61,7 @@ export default function WhyChooseUs() {
                 <h3 className="text-white font-semibold text-lg mb-3 tracking-tight">{title}</h3>
                 <p className="text-zinc-400 text-sm leading-relaxed">{desc}</p>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

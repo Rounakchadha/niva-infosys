@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Send, CheckCircle2 } from 'lucide-react'
+import Reveal from './Reveal'
 
 const propertyTypes = ['Home / Apartment', 'Office / Commercial', 'School / College', 'Hospital / Clinic', 'Factory / Warehouse', 'Retail / Shop', 'Hotel', 'Bank / ATM', 'Other']
 const requirements = ['CCTV Installation', 'Fire Safety System', 'Access Control', 'Networking / WiFi', 'AMC / Maintenance', 'Multiple Services']
@@ -22,7 +23,7 @@ export default function LeadForm() {
     <section id="lead-form" className="py-32 bg-black border-t border-white/5 relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-full bg-blue-600/5 blur-[150px] pointer-events-none" />
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <Reveal className="text-center mb-16">
           <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-4">
             Free Consultation
           </p>
@@ -33,7 +34,7 @@ export default function LeadForm() {
           <p className="text-zinc-400 text-lg">
             Tell us about your property and we'll get back with a tailored solution and site visit.
           </p>
-        </div>
+        </Reveal>
 
         {submitted ? (
           <div className="bg-zinc-900 border border-white/10 rounded-3xl p-12 text-center">
@@ -44,7 +45,9 @@ export default function LeadForm() {
             </p>
           </div>
         ) : (
-          <form
+          <Reveal
+            delay={100}
+            as="form"
             onSubmit={handleSubmit}
             className="bg-zinc-900/50 border border-white/5 rounded-3xl p-8 sm:p-12 space-y-6"
           >
@@ -125,7 +128,7 @@ export default function LeadForm() {
             <p className="text-zinc-600 text-xs text-center font-medium mt-4">
               We respect your privacy. No spam, ever.
             </p>
-          </form>
+          </Reveal>
         )}
       </div>
     </section>

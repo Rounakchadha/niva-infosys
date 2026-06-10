@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
+import { Link, NavLink } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Industries', href: '#industries' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  { label: 'Services', to: '/services' },
+  { label: 'Projects', to: '/projects' },
+  { label: 'Partners', to: '/partners' },
+  { label: 'Contact', to: '/contact' },
 ]
 
 export default function Navbar() {
@@ -29,35 +30,40 @@ export default function Navbar() {
       <div className="max-w-[1400px] w-full mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between h-16 lg:h-24">
           {/* Logo */}
-          <a href="#home" className="flex items-center group">
-            <img 
-              src="/logo_transparent.png" 
-              alt="NIVA Logo" 
+          <Link to="/" className="flex items-center group">
+            <img
+              src="/logo_transparent.png"
+              alt="NIVA Logo"
               className="h-10 lg:h-12 w-auto transition-transform group-hover:scale-105"
             />
-          </a>
+          </Link>
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-zinc-400 hover:text-white text-sm font-medium transition-colors"
+              <NavLink
+                key={link.to}
+                to={link.to}
+                end={link.to === '/'}
+                className={({ isActive }) =>
+                  `text-sm font-medium transition-colors ${
+                    isActive ? 'text-white' : 'text-zinc-400 hover:text-white'
+                  }`
+                }
               >
                 {link.label}
-              </a>
+              </NavLink>
             ))}
           </nav>
 
           {/* CTA */}
           <div className="hidden lg:block">
-            <a
-              href="#lead-form"
+            <Link
+              to="/contact"
               className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-6 py-3 rounded-full transition-colors inline-block"
             >
               Get Free Survey
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -76,22 +82,27 @@ export default function Navbar() {
         <div className="lg:hidden bg-black/95 backdrop-blur-2xl border-t border-white/5 h-screen">
           <nav className="px-6 py-8 flex flex-col gap-4">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
+              <NavLink
+                key={link.to}
+                to={link.to}
+                end={link.to === '/'}
                 onClick={() => setOpen(false)}
-                className="text-zinc-400 hover:text-white text-lg font-medium transition-colors"
+                className={({ isActive }) =>
+                  `text-2xl font-medium tracking-tight transition-colors ${
+                    isActive ? 'text-white' : 'text-zinc-400 hover:text-white'
+                  }`
+                }
               >
                 {link.label}
-              </a>
+              </NavLink>
             ))}
-            <a
-              href="#lead-form"
+            <Link
+              to="/contact"
               onClick={() => setOpen(false)}
               className="mt-6 bg-blue-600 hover:bg-blue-700 text-white text-center font-semibold px-6 py-3.5 rounded-full transition-colors"
             >
               Get Free Survey
-            </a>
+            </Link>
           </nav>
         </div>
       )}
