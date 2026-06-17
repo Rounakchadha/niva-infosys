@@ -1,84 +1,88 @@
 import { Link } from 'react-router-dom'
-import { CheckCircle2, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef } from 'react'
 import Reveal from './Reveal'
 
-const highlights = [
-  'End-to-end design, supply & installation',
-  'Genuine products from top global brands',
-  'Dedicated AMC & after-sales support',
-  'Serving homes, offices, schools & more',
-]
-
 export default function AboutPreview() {
-  return (
-    <section id="about" className="py-20 lg:py-32 bg-black border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-24 items-center">
-          {/* Visual side */}
-          <Reveal className="relative order-2 lg:order-1">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-600/10 blur-[100px] pointer-events-none" />
-            <div className="relative rounded-3xl overflow-hidden bg-zinc-900 aspect-[4/3] border border-white/5">
-              <img
-                src="/owner.png"
-                alt="Mr. Naveen Lulla, Owner of Niva Infosys"
-                className="w-full h-full object-cover"
-              />
-            </div>
+ const container = useRef(null)
+ const { scrollYProgress } = useScroll({
+ target: container,
+ offset: ['start end', 'end start']
+ })
 
-            {/* Floating badge */}
-            <div className="absolute -bottom-6 -right-6 bg-blue-600 text-white px-6 py-5 rounded-2xl shadow-2xl">
-              <div className="text-3xl font-extrabold tracking-tight">19+</div>
-              <div className="text-xs font-bold uppercase tracking-widest text-blue-200 mt-1">Years Built</div>
-            </div>
-          </Reveal>
+ const y1 = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
+ const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"])
 
-          {/* Content side */}
-          <Reveal delay={150} className="order-1 lg:order-2">
-            <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-4">
-              About Niva Infosys
-            </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-6 tracking-tight">
-              Lucknow's Trusted Security &{' '}
-              <span className="text-zinc-500">IT Partner.</span>
-            </h2>
-            <p className="text-zinc-400 text-base sm:text-lg leading-relaxed mb-5">
-              Founded by <strong className="text-white">Mr. Naveen Lulla</strong>, Niva Infosys has been
-              delivering professional-grade security and IT infrastructure solutions across Lucknow since
-              2007. We combine deep technical expertise with local knowledge.
-            </p>
-            <p className="text-zinc-400 text-base sm:text-lg leading-relaxed mb-10">
-              From single-camera home setups to large-scale enterprise surveillance networks, our team
-              handles every project with precision and reliability.
-            </p>
+ return (
+ <section id="about" ref={container} className="py-32 sm:py-44 bg-[#EAEAEC] dark:bg-[#050505] transition-colors duration-500 relative z-20 border-t border-black/5 dark:border-white/5 overflow-hidden">
+ <div className="max-w-[1400px] mx-auto px-6 sm:px-12 relative z-10">
+ <div className="grid lg:grid-cols-12 gap-16 items-center">
+ 
+ {/* Typographic Left Side */}
+ <div className="lg:col-span-7 flex flex-col justify-center">
+ <Reveal>
+ <p className="text-zinc-500 text-xs font-bold uppercase tracking-[0.2em] mb-8">
+ About Niva Infosys
+ </p>
+ <h2 className="text-[3.5rem] sm:text-[5rem] md:text-[6rem] lg:text-[7.5rem] font-black text-black dark:text-white leading-[0.85] tracking-tighter uppercase mb-12 sm:mb-20">
+ WE<br/>
+ DON'T<br/>
+ PLAY<br/>
+ <span className="text-zinc-400 dark:text-zinc-600">GAMES.</span>
+ </h2>
+ </Reveal>
 
-            <ul className="space-y-4 mb-10 relative">
-              {highlights.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-blue-500 flex-shrink-0" />
-                  <span className="text-zinc-300 font-medium">{item}</span>
-                </li>
-              ))}
-            </ul>
+ <Reveal delay={150}>
+ <div className="pl-0 sm:pl-10 border-l-0 sm:border-l-4 border-black dark:border-white">
+ <p className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black dark:text-white leading-tight tracking-tight mb-8 max-w-3xl">
+ Listen, anyone can screw a camera into a wall. But what happens at 3 AM when the power cuts and someone is trying to bypass your server room? Yeah, exactly.
+ </p>
+ <p className="text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl mb-6">
+ Since 2007, <strong className="text-black dark:text-white">Mr. Naveen Lulla</strong> and the Niva Infosys crew have been the obsessive nerds calculating blind spots in our sleep. We wire up systems that look like modern art and deploy AI that spots threats faster than you can blink.
+ </p>
+ <p className="text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl mb-12">
+ We don't just sell boxes of tech. We sell the absolute certainty that when you lock your doors, they stay locked. From cozy living rooms to massive 50-acre industrial plants, if it exists, we lock it down. No cheap cables, no shortcuts, no excuses. Just pure, unadulterated peace of mind.
+ </p>
+ <Link
+ to="/about"
+ className="group inline-flex items-center gap-4 sm:gap-6 text-xl sm:text-2xl font-black text-black dark:text-white uppercase tracking-tighter hover:text-blue-600 dark:hover:text-blue-500 transition-colors"
+ >
+ Read Our Story
+ <span className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-black dark:bg-white text-white dark:text-black flex items-center justify-center group-hover:bg-blue-600 dark:group-hover:bg-blue-500 transition-colors">
+ <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
+ </span>
+ </Link>
+ </div>
+ </Reveal>
+ </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-              <Link
-                to="/about"
-                className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-4 sm:py-3 rounded-full transition-colors group w-full sm:w-auto"
-              >
-                Learn More
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                to="/services"
-                className="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold px-6 py-4 sm:py-3 rounded-full transition-colors group w-full sm:w-auto"
-              >
-                Explore Our Services
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </div>
-    </section>
-  )
+ {/* Parallax Right Side */}
+ <div className="lg:col-span-5 relative h-[500px] sm:h-[800px] mt-12 lg:mt-0">
+ {/* Massive Number */}
+ <motion.div 
+ style={{ y: y1 }}
+ className="absolute top-0 lg:top-10 right-0 text-[10rem] sm:text-[15rem] lg:text-[20rem] font-black text-black/5 dark:text-white/5 leading-none tracking-tighter select-none pointer-events-none"
+ >
+ 19
+ </motion.div>
+ 
+ {/* Floating Image */}
+ <motion.div 
+ style={{ y: y2 }}
+ className="absolute top-10 lg:top-1/4 left-0 w-full lg:w-[120%] aspect-[4/5] bg-white dark:bg-[#0a0a0a] rounded-[2rem] sm:rounded-[3rem] p-4 shadow-[0_0_50px_rgba(0,0,0,0.1)] dark:shadow-none border border-black/5 dark:border-white/5"
+ >
+ <div className="w-full h-full rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden bg-black relative group">
+ <img src="/owner.png" alt="Mr. Naveen Lulla" className="w-full h-full object-cover transition-all duration-700" />
+ <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 bg-white/90 dark:bg-black/90 backdrop-blur-md border border-black/10 dark:border-white/10 p-6 rounded-2xl">
+ <h3 className="text-black dark:text-white font-black text-xl sm:text-2xl tracking-tighter">Mr. Naveen Lulla</h3>
+ <p className="text-zinc-500 text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] mt-1">Founder & CEO</p>
+ </div>
+ </div>
+ </motion.div>
+ </div>
+ </div>
+ </div>
+ </section>
+ )
 }

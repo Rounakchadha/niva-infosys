@@ -1,77 +1,89 @@
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { ArrowDown } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { Phone, ClipboardList, ShieldCheck, Wifi, Camera } from 'lucide-react'
-import AnimatedBackground from './AnimatedBackground'
 
 export default function Hero() {
-  return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
-    >
-      {/* React Bits style animated aurora/grid background */}
-      <AnimatedBackground />
+ const containerRef = useRef(null)
+ 
+ // The container is 200vh tall to allow scrolling while the sticky div stays pinned
+ const { scrollYProgress } = useScroll({
+ target: containerRef,
+ offset: ["start start", "end start"]
+ })
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
-        <div className="max-w-4xl mx-auto flex flex-col items-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-8">
-            <ShieldCheck className="w-4 h-4 text-zinc-400" />
-            <span className="text-zinc-300 text-xs font-semibold tracking-wide uppercase">
-              Trusted Security Partner Since 2007
-            </span>
-          </div>
+ // The huge text scales down and fades out
+ const scale = useTransform(scrollYProgress, [0, 1], [1, 0.7])
+ const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
+ const bgOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
 
-          {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-tight tracking-tight text-white mb-6">
-            Securing Homes, Businesses
-            <br />
-            <span className="text-zinc-500">& Institutions.</span>
-          </h1>
+ return (
+ <section ref={containerRef} className="relative h-[150vh] bg-[#EAEAEC] dark:bg-[#050505] transition-colors duration-500">
+ {/* Sticky wrapper */}
+ <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col items-center justify-center">
+ 
+ {/* Subtle grid bg that fades out early */}
+ <motion.div 
+ style={{ opacity: bgOpacity }}
+ className="absolute inset-0 bg-[linear-gradient(to_right,#0000000a_1px,transparent_1px),linear-gradient(to_bottom,#0000000a_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),dark:linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none transition-colors duration-500"
+ />
 
-          {/* Subheadline */}
-          <p className="text-zinc-400 text-base sm:text-lg lg:text-xl leading-relaxed mb-10 max-w-2xl mx-auto px-2 sm:px-0">
-            CCTV, Fire Safety, Access Control, Networking & Surveillance Solutions in Lucknow.
-            End-to-end installation, genuine products, reliable support.
-          </p>
+ <motion.div
+ style={{ scale, opacity }}
+ className="relative z-10 w-full max-w-[1400px] px-6 sm:px-12 flex flex-col items-center text-center pt-10"
+ >
+ <div className="overflow-hidden pb-4">
+ <motion.h1 
+ initial={{ y: "100%", opacity: 0 }}
+ animate={{ y: 0, opacity: 1 }}
+ transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+ className="text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] font-black leading-[0.85] tracking-tighter text-black dark:text-white"
+ >
+ WE SECURE<br/>WHAT MATTERS.
+ </motion.h1>
+ </div>
+ 
+ <motion.p 
+ initial={{ opacity: 0, y: 20 }}
+ animate={{ opacity: 1, y: 0 }}
+ transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+ className="text-zinc-600 dark:text-zinc-400 text-lg sm:text-2xl max-w-2xl mt-8 tracking-tight font-medium"
+ >
+ End-to-end security and IT infrastructure. Built for modern enterprises.
+ </motion.p>
+ 
+ <motion.div
+ initial={{ opacity: 0, y: 20 }}
+ animate={{ opacity: 1, y: 0 }}
+ transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+ className="mt-12 flex flex-col sm:flex-row gap-4 justify-center w-full max-w-xs sm:max-w-none mx-auto"
+ >
+ <Link
+ to="/contact"
+ className="btn-blue w-full sm:w-[240px] py-4 text-sm"
+ >
+ Get Free Site Survey
+ </Link>
+ <a
+ href="tel:+919999999999"
+ className="btn-white w-full sm:w-[240px] py-4 text-sm"
+ >
+ Free Call
+ </a>
+ </motion.div>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-xs sm:max-w-none mx-auto">
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold w-full sm:w-[240px] py-4 rounded-full transition-colors"
-            >
-              <ClipboardList className="w-5 h-5" />
-              Get Free Site Survey
-            </Link>
-            <a
-              href="tel:+919999999999"
-              className="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-white/5 border border-white/20 text-white font-semibold w-full sm:w-[240px] py-4 rounded-full transition-colors"
-            >
-              <Phone className="w-5 h-5" />
-              Free Call
-            </a>
-          </div>
+ <motion.div
+ initial={{ opacity: 0 }}
+ animate={{ opacity: 1 }}
+ transition={{ duration: 1, delay: 1 }}
+ className="absolute bottom-[-10vh] left-1/2 -translate-x-1/2 flex items-center justify-center gap-3 text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-600"
+ >
+ <ArrowDown className="w-4 h-4 animate-bounce" />
+ Scroll
+ </motion.div>
+ </motion.div>
 
-          {/* Floating feature pills */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-12 sm:mt-16">
-            {[
-              { icon: Camera, label: 'CCTV Solutions' },
-              { icon: ShieldCheck, label: 'Fire Safety' },
-              { icon: Wifi, label: 'Networking' },
-            ].map(({ icon: Icon, label }) => (
-              <div
-                key={label}
-                className="flex items-center gap-2 bg-zinc-900/50 border border-white/5 rounded-full px-4 py-2 sm:px-5"
-              >
-                <Icon className="w-4 h-4 text-white" />
-                <span className="text-zinc-300 text-sm font-medium">{label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-
-    </section>
-  )
+ </div>
+ </section>
+ )
 }

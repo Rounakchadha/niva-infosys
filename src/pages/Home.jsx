@@ -7,15 +7,15 @@ import Brands from '../components/Brands'
 import Testimonials from '../components/Testimonials'
 
 export default function Home() {
-  return (
-    <>
-      <Hero />
-      <Stats />
-      <AboutPreview />
-      <Services />
-      <ProjectsTeaser />
-      <Brands />
-      <Testimonials />
-    </>
-  )
+ return (
+ <>
+ <Hero />
+ <Stats />
+ <AboutPreview />
+ <Services />
+ <ProjectsTeaser />
+ <Brands />
+ <Testimonials />
+ </>
+ )
 }

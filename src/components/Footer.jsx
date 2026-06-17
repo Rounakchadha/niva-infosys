@@ -1,113 +1,59 @@
 import { Link } from 'react-router-dom'
 import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react'
 
-const quickLinks = [
-  { label: 'Home', to: '/' },
-  { label: 'About Us', to: '/about' },
-  { label: 'Services', to: '/services' },
-  { label: 'Projects', to: '/projects' },
-  { label: 'Partners', to: '/partners' },
-  { label: 'Contact', to: '/contact' },
-]
-const services = ['CCTV Solutions', 'Fire Safety', 'Access Control', 'Networking & IT', 'AMC & Maintenance']
-
 export default function Footer() {
-  const year = new Date().getFullYear()
+ const year = new Date().getFullYear()
 
-  return (
-    <footer className="bg-black border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12 lg:mb-16">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <div className="mb-6">
-              <img 
-                src="/logo_transparent.png" 
-                alt="NIVA Logo" 
-                className="h-10 w-auto"
-              />
-            </div>
-            <p className="text-zinc-400 text-sm leading-relaxed mb-6">
-              Lucknow's trusted partner for Security, Surveillance & IT Infrastructure since 2007.
-            </p>
-            <div className="space-y-3">
-              <a href="tel:+918043865962" className="flex items-center gap-3 text-zinc-400 hover:text-white text-sm transition-colors">
-                <Phone className="w-4 h-4 text-white flex-shrink-0" />
-                +91 80438 65962
-              </a>
-              <a href="mailto:info@nivainfosys.com" className="flex items-center gap-3 text-zinc-400 hover:text-white text-sm transition-colors">
-                <Mail className="w-4 h-4 text-white flex-shrink-0" />
-                info@nivainfosys.com
-              </a>
-              <div className="flex items-start gap-3 text-zinc-400 text-sm">
-                <MapPin className="w-4 h-4 text-white flex-shrink-0 mt-0.5" />
-                2/200, Vishwas Khand, Gomti Nagar, Lucknow - 226010
-              </div>
-            </div>
-          </div>
+ return (
+ <footer className="bg-[#EAEAEC] dark:bg-[#050505] transition-colors duration-500 border-t border-black/10 dark:border-white/5 pt-32 pb-8 relative z-20">
+ <div className="max-w-[1400px] mx-auto px-6 sm:px-12">
+ {/* Massive Headline */}
+ <div className="mb-24">
+ <h2 className="text-[12vw] sm:text-[10vw] font-black leading-none tracking-tighter text-black dark:text-white uppercase">
+ Let's Secure<br/>
+ <span className="text-zinc-400 dark:text-zinc-700">Your Future.</span>
+ </h2>
+ </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-6 uppercase tracking-widest">Quick Links</h4>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.to}>
-                  <Link
-                    to={link.to}
-                    className="flex items-center gap-2 text-zinc-400 hover:text-white text-sm transition-colors group"
-                  >
-                    <ArrowRight className="w-3 h-3 text-zinc-600 group-hover:text-white transition-colors" />
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+ {/* Grid Info */}
+ <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-24">
+ <div className="flex flex-col">
+ <h4 className="text-black dark:text-white font-bold text-sm uppercase tracking-[0.2em] mb-6">Contact</h4>
+ <a href="mailto:info@nivainfosys.com" className="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors mb-2 font-medium">info@nivainfosys.com</a>
+ <a href="tel:+918043865962" className="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors font-medium">+91 80438 65962</a>
+ </div>
 
-          {/* Services */}
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-6 uppercase tracking-widest">Our Services</h4>
-            <ul className="space-y-3">
-              {services.map((svc) => (
-                <li key={svc}>
-                  <Link
-                    to="/services"
-                    className="flex items-center gap-2 text-zinc-400 hover:text-white text-sm transition-colors group"
-                  >
-                    <ArrowRight className="w-3 h-3 text-zinc-600 group-hover:text-white transition-colors" />
-                    {svc}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+ <div className="flex flex-col">
+ <h4 className="text-black dark:text-white font-bold text-sm uppercase tracking-[0.2em] mb-6">Location</h4>
+ <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-[200px] font-medium">
+ 2/200, Vishwas Khand, Gomti Nagar,<br/>Lucknow - 226010
+ </p>
+ </div>
 
-          {/* CTA */}
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-6 uppercase tracking-widest">Get Started</h4>
-            <p className="text-zinc-400 text-sm mb-6 leading-relaxed">
-              Book a free site survey and get a custom quote for your property.
-            </p>
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-white hover:bg-zinc-200 text-black text-sm font-semibold px-6 py-4 sm:py-3 rounded-full transition-colors w-full sm:w-auto"
-            >
-              Free Site Survey
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
+ <div className="flex flex-col">
+ <h4 className="text-black dark:text-white font-bold text-sm uppercase tracking-[0.2em] mb-6">Socials</h4>
+ <a href="#" className="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors mb-2 font-medium">LinkedIn</a>
+ <a href="#" className="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors font-medium">Instagram</a>
+ </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-zinc-600 text-sm">
-            © {year} Niva Infosys. All rights reserved. Lucknow, UP.
-          </p>
-          <p className="text-zinc-700 text-sm font-medium">
-            Owned by Mr. Naveen Lulla
-          </p>
-        </div>
-      </div>
-    </footer>
-  )
+ <div className="flex flex-col">
+ <h4 className="text-black dark:text-white font-bold text-sm uppercase tracking-[0.2em] mb-6">Ready?</h4>
+ <Link to="/contact" className="btn-premium w-max px-8 py-4">
+ Get Started
+ </Link>
+ </div>
+ </div>
+
+ {/* Bottom Bar */}
+ <div className="flex flex-col sm:flex-row items-center justify-between pt-8 border-t border-black/10 dark:border-white/5 text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
+ <p className="mb-4 sm:mb-0">© {year} NIVA INFOSYS</p>
+ <div className="flex items-center gap-6">
+ <Link to="/terms" className="hover:text-black dark:hover:text-white transition-colors">Terms</Link>
+ <Link to="/privacy" className="hover:text-black dark:hover:text-white transition-colors">Privacy</Link>
+ <p className="hidden sm:block">OWNED BY NAVEEN LULLA</p>
+ </div>
+ </div>
+ </div>
+ </footer>
+ )
 }

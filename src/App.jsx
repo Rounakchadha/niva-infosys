@@ -7,19 +7,23 @@ import Projects from './pages/Projects'
 import Partners from './pages/Partners'
 import Contact from './pages/Contact'
 
+import { ThemeProvider } from './components/ThemeProvider'
+
 export default function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/partners" element={<Partners />} />
-          <Route path="/contact" element={<Contact />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  )
+ return (
+ <ThemeProvider>
+ <BrowserRouter>
+ <Routes>
+ <Route element={<Layout />}>
+ <Route path="/" element={<Home />} />
+ <Route path="/about" element={<About />} />
+ <Route path="/services" element={<ServicesPage />} />
+ <Route path="/projects" element={<Projects />} />
+ <Route path="/partners" element={<Partners />} />
+ <Route path="/contact" element={<Contact />} />
+ </Route>
+ </Routes>
+ </BrowserRouter>
+ </ThemeProvider>
+ )
 }

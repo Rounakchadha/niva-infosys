@@ -1,153 +1,90 @@
-import { Camera, Flame, Fingerprint, Wifi, Wrench, ArrowRight } from 'lucide-react'
-import Reveal from './Reveal'
+import { Camera, Flame, Fingerprint, Wifi, Wrench } from 'lucide-react'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 const services = [
-  {
-    icon: Camera,
-    title: 'CCTV Solutions',
-    desc: 'IP, Dome, Bullet, PTZ & Night Vision cameras with mobile monitoring and cloud recording.',
-    items: ['IP Cameras', 'Dome & Bullet Cameras', 'PTZ Cameras', 'Night Vision', 'Mobile Monitoring'],
-    image: '/services/cctv.jpg',
-  },
-  {
-    icon: Flame,
-    title: 'Fire & Safety Systems',
-    desc: 'Comprehensive fire detection and emergency alert infrastructure to protect lives and assets.',
-    items: ['Fire Alarm Systems', 'Smoke Detectors', 'Emergency Alerts'],
-    image: '/services/fire.jpg',
-  },
-  {
-    icon: Fingerprint,
-    title: 'Access Control',
-    desc: 'Secure and manage entry to your premises with biometrics and video door solutions.',
-    items: ['Biometric Attendance', 'Door Access Control', 'Video Door Phones'],
-    image: '/services/access.jpg',
-  },
-  {
-    icon: Wifi,
-    title: 'Networking & IT',
-    desc: 'Professional LAN, WiFi, and server room infrastructure for seamless connectivity.',
-    items: ['LAN Setup', 'WiFi Infrastructure', 'Server Room Setup', 'Office Networking'],
-    image: '/services/networking.jpg',
-  },
-  {
-    icon: Wrench,
-    title: 'AMC & Maintenance',
-    desc: 'Annual contracts, health checks, and emergency repairs to keep your systems running 24/7.',
-    items: ['Annual Maintenance', 'CCTV Health Checks', 'Emergency Repairs', 'Installation Support'],
-    image: '/services/amc.jpg',
-  },
+ {
+ icon: Camera,
+ title: 'Eye In The Sky',
+ desc: 'We don\'t just install cameras. We install an omniscient, night-vision equipped, AI-powered spy network so you never miss a blink.',
+ image: '/services/cctv.jpg',
+ },
+ {
+ icon: Flame,
+ title: 'Inferno Prevention',
+ desc: 'Before the first wisp of smoke even thinks about ruining your day, our detection systems are already screaming for help.',
+ image: '/services/fire.jpg',
+ },
+ {
+ icon: Fingerprint,
+ title: 'Biometric Fort Knox',
+ desc: 'Turn your front door into a sci-fi movie. If their face or fingerprint isn\'t on the VIP list, they aren\'t getting in. Period.',
+ image: '/services/access.jpg',
+ },
+ {
+ icon: Wifi,
+ title: 'God-Tier Networking',
+ desc: 'No more dead zones. No more buffering. We wire up your infrastructure so fast and clean, your ISP will be jealous.',
+ image: '/services/networking.jpg',
+ },
+ {
+ icon: Wrench,
+ title: 'The Fixers',
+ desc: 'When tech throws a tantrum, we’re the squad that kicks the door down and fixes it. 24/7 AMC support. We got your back.',
+ image: '/services/amc.jpg',
+ },
 ]
 
 export default function Services() {
-  return (
-    <section id="services" className="py-20 lg:py-32 bg-black border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Heading */}
-        <Reveal className="text-center max-w-2xl mx-auto mb-16 lg:mb-20">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-6 tracking-tight">
-            Complete Security & IT Solutions.
-          </h2>
-          <p className="text-zinc-400 text-base sm:text-lg">
-            From surveillance to networking, we deliver end-to-end solutions tailored to your property
-            and budget.
-          </p>
-        </Reveal>
+ const targetRef = useRef(null)
+ const { scrollYProgress } = useScroll({
+ target: targetRef,
+ })
 
-        {/* Cards Carousel */}
-        <div className="relative flex overflow-hidden -mx-4 sm:-mx-6 lg:-mx-8">
-          {/* Edge fades for smooth scroll disappearance */}
-          <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+ // Move horizontally as we scroll down the 300vh section
+ const x = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"])
 
-          <div className="flex w-max animate-marquee py-4">
-            {/* First Set */}
-            <div className="flex gap-4 sm:gap-6 px-3">
-              {services.map((svc) => (
-                <div
-                  key={`set1-${svc.title}`}
-                  className="w-[280px] sm:w-[380px] shrink-0 group relative bg-zinc-900/40 border border-white/5 hover:border-blue-500/30 rounded-3xl card-hover cursor-default overflow-hidden transition-all duration-300"
-                >
-                  <div className="aspect-[16/10] overflow-hidden">
-                    <img
-                      src={svc.image}
-                      alt={svc.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="p-6 sm:p-8">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600/10 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 transition-transform group-hover:scale-105 group-hover:bg-blue-600/20">
-                      <svc.icon className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" />
-                    </div>
-                    <h3 className="text-white font-semibold text-lg sm:text-xl mb-2 sm:mb-3 tracking-tight">{svc.title}</h3>
-                    <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">{svc.desc}</p>
-                    <ul className="space-y-2 sm:space-y-2.5">
-                      {svc.items.map((item) => (
-                        <li key={item} className="flex items-center gap-3 text-zinc-500 text-sm font-medium">
-                          <span className="w-1.5 h-1.5 rounded-full bg-blue-500/50 flex-shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                    <button className="mt-8 flex items-center gap-2 text-blue-500 text-sm font-semibold transition-colors opacity-80 group-hover:opacity-100 group-hover:text-blue-400">
-                      Learn More <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-            {/* Second Set (Duplicate for seamless loop) */}
-            <div className="flex gap-4 sm:gap-6 px-3" aria-hidden="true">
-              {services.map((svc) => (
-                <div
-                  key={`set2-${svc.title}`}
-                  className="w-[280px] sm:w-[380px] shrink-0 group relative bg-zinc-900/40 border border-white/5 hover:border-blue-500/30 rounded-3xl card-hover cursor-default overflow-hidden transition-all duration-300"
-                >
-                  <div className="aspect-[16/10] overflow-hidden">
-                    <img
-                      src={svc.image}
-                      alt={svc.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="p-6 sm:p-8">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600/10 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 transition-transform group-hover:scale-105 group-hover:bg-blue-600/20">
-                      <svc.icon className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" />
-                    </div>
-                    <h3 className="text-white font-semibold text-lg sm:text-xl mb-2 sm:mb-3 tracking-tight">{svc.title}</h3>
-                    <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">{svc.desc}</p>
-                    <ul className="space-y-2 sm:space-y-2.5">
-                      {svc.items.map((item) => (
-                        <li key={item} className="flex items-center gap-3 text-zinc-500 text-sm font-medium">
-                          <span className="w-1.5 h-1.5 rounded-full bg-blue-500/50 flex-shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                    <button className="mt-8 flex items-center gap-2 text-blue-500 text-sm font-semibold transition-colors opacity-80 group-hover:opacity-100 group-hover:text-blue-400">
-                      Learn More <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+ return (
+ <section ref={targetRef} className="relative h-[300vh] bg-[#F0F2F5] dark:bg-[#050505] transition-colors duration-500">
+ <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+ 
+ {/* Header */}
+ <div className="px-6 md:px-16 mb-16 w-full max-w-7xl">
+ <p className="text-zinc-500 text-xs font-bold uppercase tracking-[0.2em] mb-4">
+ Our Arsenal
+ </p>
+ <h2 className="text-5xl sm:text-7xl font-black text-black dark:text-white tracking-tighter leading-none">
+ WE BUILD IT.<br/>
+ <span className="text-zinc-600">THEY CAN'T BREAK IT.</span>
+ </h2>
+ </div>
 
-        <style>{`
-          @keyframes marquee {
-            0%, 15% { transform: translateX(0); }
-            20%, 35% { transform: translateX(-10%); }
-            40%, 55% { transform: translateX(-20%); }
-            60%, 75% { transform: translateX(-30%); }
-            80%, 95% { transform: translateX(-40%); }
-            100% { transform: translateX(-50%); }
-          }
-          .animate-marquee {
-            animation: marquee 20s ease-in-out infinite;
-          }
-        `}</style>
-      </div>
-    </section>
-  )
+ {/* Horizontal scroll container */}
+ <motion.div style={{ x }} className="flex gap-8 px-6 md:px-16 w-max">
+ {services.map((svc, i) => (
+ <div
+ key={svc.title}
+ className="w-[300px] sm:w-[450px] shrink-0 bg-white dark:bg-[#0a0a0a] border border-black/5 dark:border-white/5 rounded-2xl overflow-hidden group hover:border-black/20 dark:hover:border-white/20 transition-colors shadow-sm dark:shadow-none"
+ >
+ <div className="aspect-[4/3] bg-[#EAEAEC] dark:bg-black relative overflow-hidden">
+ <img 
+ src={svc.image} 
+ alt={svc.title} 
+ className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" 
+ />
+ <div className="absolute inset-0 bg-black/20 dark:bg-black/40 group-hover:bg-transparent transition-colors z-10 pointer-events-none" />
+ </div>
+ <div className="p-8">
+ <div className="w-12 h-12 bg-black/5 dark:bg-white/5 rounded-xl flex items-center justify-center mb-6 text-black dark:text-white group-hover:scale-110 group-hover:bg-black/10 dark:group-hover:bg-white/10 transition-all">
+ <svc.icon className="w-5 h-5" />
+ </div>
+ <h3 className="text-black dark:text-white font-bold text-2xl mb-3 tracking-tight">{svc.title}</h3>
+ <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">{svc.desc}</p>
+ </div>
+ </div>
+ ))}
+ </motion.div>
+ </div>
+ </section>
+ )
 }
