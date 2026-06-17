@@ -78,7 +78,7 @@ export default function About() {
         </motion.h1>
 
         {/* Marquee */}
-        <div className="w-full overflow-hidden flex border-y border-black/10 dark:border-white/10 py-6 mt-12 bg-black dark:bg-white text-white dark:text-black transform -rotate-1 scale-105">
+        <div className="w-full overflow-hidden flex border-y border-black/10 dark:border-white/10 py-6 mt-12 bg-black dark:bg-white text-white dark:text-black">
           <div className="flex animate-marquee whitespace-nowrap items-center">
             {[...Array(10)].map((_, i) => (
               <span key={i} className="text-2xl sm:text-4xl font-black uppercase tracking-tighter px-8">
