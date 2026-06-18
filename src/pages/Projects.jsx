@@ -145,6 +145,7 @@ function ProjectCard({ proj, onClick }) {
         <img 
           src={proj.image} 
           alt={proj.title} 
+          referrerPolicy="no-referrer"
           className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
         />
         <div className="absolute inset-0 bg-black/10 dark:bg-black/30 group-hover:bg-transparent transition-colors duration-500 pointer-events-none"></div>
@@ -200,7 +201,7 @@ function ProjectModal({ proj, onClose }) {
         <div className="overflow-y-auto flex-1 overscroll-contain">
           {/* Hero Image */}
           <div className="w-full h-[40vh] sm:h-[50vh] relative bg-black">
-            <img src={proj.image} alt={proj.title} className="w-full h-full object-cover opacity-80" />
+            <img src={proj.image} alt={proj.title} referrerPolicy="no-referrer" className="w-full h-full object-cover opacity-80" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
             <div className="absolute bottom-8 left-8 right-8">
               <span className="text-white/70 text-xs font-bold uppercase tracking-[0.2em] mb-3 block">{proj.tag}</span>
@@ -245,6 +246,7 @@ function ProjectModal({ proj, onClose }) {
                       <img 
                         src={imgSrc} 
                         alt={`${proj.title} detail ${idx + 1}`} 
+                        referrerPolicy="no-referrer"
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                     </div>

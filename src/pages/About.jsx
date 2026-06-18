@@ -116,15 +116,15 @@ export default function About() {
         {/* Parallax Gallery (Desktop) */}
         <div ref={containerRef} className="relative h-[800px] hidden lg:block">
           <motion.div style={{ y: y1 }} className="absolute top-0 left-0 w-[55%] aspect-[3/4] rounded-[2rem] overflow-hidden shadow-2xl border border-black/5 dark:border-white/5 z-20 group">
-            <img src={gallery[0].src} alt={gallery[0].alt} className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" />
+            <img src={gallery[0].src} alt={gallery[0].alt} referrerPolicy="no-referrer" className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" />
           </motion.div>
           
           <motion.div style={{ y: y2 }} className="absolute top-[25%] right-0 w-[50%] aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl border border-black/5 dark:border-white/5 z-10 group">
-            <img src={gallery[1].src} alt={gallery[1].alt} className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" />
+            <img src={gallery[1].src} alt={gallery[1].alt} referrerPolicy="no-referrer" className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" />
           </motion.div>
           
           <motion.div style={{ y: y3 }} className="absolute bottom-10 left-[20%] w-[45%] aspect-[1/1] rounded-[2rem] overflow-hidden shadow-2xl border border-black/5 dark:border-white/5 z-30 group">
-            <img src={gallery[2].src} alt={gallery[2].alt} className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" />
+            <img src={gallery[2].src} alt={gallery[2].alt} referrerPolicy="no-referrer" className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" />
           </motion.div>
         </div>
 
@@ -132,7 +132,7 @@ export default function About() {
         <div className="lg:hidden grid gap-6">
           {gallery.map((g, i) => (
             <div key={i} className="rounded-[2rem] overflow-hidden border border-black/5 dark:border-white/5 aspect-[4/3]">
-              <img src={g.src} alt={g.alt} className="w-full h-full object-cover " />
+              <img src={g.src} alt={g.alt} referrerPolicy="no-referrer" className="w-full h-full object-cover " />
             </div>
           ))}
         </div>
